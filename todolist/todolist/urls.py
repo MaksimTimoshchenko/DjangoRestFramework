@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from users.urls import router as users_router
+from todos.urls import projects_router, todos_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/users/', include(users_router.urls)),
+    path('api/projects/', include(projects_router.urls)),
+    path('api/todos/', include(todos_router.urls)),
 ]
