@@ -1,3 +1,4 @@
+from rest_framework.fields import ReadOnlyField
 from rest_framework.serializers import ModelSerializer
 
 from .models import Project, ToDo
@@ -5,7 +6,7 @@ from users.serializers import UserModelSerializer
 
 
 class ProjectModelSerializer(ModelSerializer):
-    users = UserModelSerializer(many=True)
+    users = UserModelSerializer(source='project', many=True, read_only=True)
 
     class Meta:
         model = Project
