@@ -46,6 +46,7 @@ class User(AbstractBaseUser):
     lastname = models.CharField('Фамилия', max_length=75, blank=True)
     is_active = models.BooleanField('Активен', default=True)
     is_admin = models.BooleanField('Администратор', default=False)
+    is_developer = models.BooleanField('Разработчик', default=False)
 
     objects = UserManager()
 
