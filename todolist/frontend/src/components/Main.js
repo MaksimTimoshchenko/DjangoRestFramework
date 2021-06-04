@@ -24,7 +24,7 @@ class Main extends Component {
                     <Route exact path='/' component={HomePage} />
                     <Route exact path='/users/' component={(props) => <UsersPage headers={headers} />} />
                     <Route exact path='/projects/' component={(props) => <ProjectsPage headers={headers} />} />
-                    <Route exact path='/project/:id' component={(props) => <ProjectPage headers={headers} />} />
+                    <Route exact path='/project/:id' component={(props) => <ProjectPage headers={headers} {...props}/>} />
                     <Route exact path='/todos/'  component={(props) => <ToDosPage headers={headers} />} />
                 </Switch>
             </main>
