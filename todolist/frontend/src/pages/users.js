@@ -13,7 +13,8 @@ class UsersPage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/users/')
+        let headers = this.props.headers
+        axios.get('http://127.0.0.1:8000/api/users/', { headers })
             .then(response => {
                 const users = response.data.results
                 this.setState({

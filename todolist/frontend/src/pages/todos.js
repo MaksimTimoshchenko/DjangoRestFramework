@@ -13,7 +13,8 @@ class ToDosPage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1/api/todos/')
+        const headers = this.props.headers
+        axios.get('http://127.0.0.1/api/todos/', { headers })
             .then(response => {
                 const todos = response.data.results
                 this.setState({
