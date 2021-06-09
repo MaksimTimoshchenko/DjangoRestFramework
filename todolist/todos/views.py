@@ -6,6 +6,7 @@ from rest_framework.status import HTTP_204_NO_CONTENT
 from .models import Project, ToDo, DISABLED
 from .serializers import ProjectModelSerializer, ToDoModelSerializer
 from .filters import ProjectFilter, ToDoFilter
+from .permissions import CustomProjectPermission, CustomToDoPermission
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
@@ -15,6 +16,7 @@ class ProjectModelViewSet(ModelViewSet):
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
     filterset_class = ProjectFilter
+    permission_classes = [CustomProjectPermission]
 
 
 class ToDoLimitOffsetPagination(LimitOffsetPagination):
@@ -24,6 +26,7 @@ class ToDoModelViewSet(ModelViewSet):
     serializer_class = ToDoModelSerializer
     pagination_class = ToDoLimitOffsetPagination
     filterset_class = ToDoFilter
+    permission_classes = [CustomToDoPermission]
 
     def destroy(self, request, *args, **kwargs):
         todo = self.get_object()
