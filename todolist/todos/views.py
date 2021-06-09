@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT
 
 from .models import Project, ToDo, DISABLED
-from .serializers import ProjectModelSerializer, ToDoModelSerializer
+from .serializers import ProjectModelSerializer, ProjectModelSerializerBase, ToDoModelSerializer, ToDoModelSerializerBase
 from .filters import ProjectFilter, ToDoFilter
 from .permissions import CustomProjectPermission, CustomToDoPermission
 
@@ -13,17 +13,22 @@ class ProjectLimitOffsetPagination(LimitOffsetPagination):
    default_limit = 10   
 class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
-    serializer_class = ProjectModelSerializer
+    # serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
     filterset_class = ProjectFilter
     permission_classes = [CustomProjectPermission]
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return ProjectModelSerializer
+        return ProjectModelSerializerBase
 
 
 class ToDoLimitOffsetPagination(LimitOffsetPagination):
    default_limit = 20
 class ToDoModelViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
-    serializer_class = ToDoModelSerializer
+    # serializer_class = ToDoModelSerializer
     pagination_class = ToDoLimitOffsetPagination
     filterset_class = ToDoFilter
     permission_classes = [CustomToDoPermission]
@@ -33,4 +38,9 @@ class ToDoModelViewSet(ModelViewSet):
         todo.status = DISABLED
         todo.save()
         return Response(status=HTTP_204_NO_CONTENT)
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return ToDoModelSerializer
+        return ToDoModelSerializerBase
     
