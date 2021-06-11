@@ -13,7 +13,8 @@ class ProjectsPage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1/api/projects/')
+        const headers = this.props.headers
+        axios.get('http://127.0.0.1/api/projects/', { headers })
             .then(response => {
                 const projects = response.data.results
                 this.setState({
