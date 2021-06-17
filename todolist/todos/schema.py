@@ -22,6 +22,7 @@ class UserType(DjangoObjectType):
 class Query(graphene.ObjectType):
     all_todos = graphene.List(ToDoType)
     all_users = graphene.List(UserType)
+    all_projects = graphene.List(ProjectType)
     user_by_id = graphene.Field(UserType, id=graphene.Int(required=True))
     projects_by_todos_text = graphene.List(ProjectType, text=graphene.String(required=False))
 
@@ -31,6 +32,9 @@ class Query(graphene.ObjectType):
 
     def resolve_all_users(root, info):
         return User.objects.all()
+    
+    def resolve_all_projects(root, info):
+        return Project.objects.all()
 
     def resolve_user_by_id(self, info, id):
         try:
