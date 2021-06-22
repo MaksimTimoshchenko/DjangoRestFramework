@@ -9,10 +9,10 @@ class Navbar extends React.Component {
         let navbar_button
         if (isAuthenticated) {
             navbar_button = <div className="dropdown float-end">
-                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">{this.props.authenticatedUser}</a>
+                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">{this.props.authenticatedUsername}</a>
 
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#" onClick={() => this.props.logout()}>Log Out</a></li>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a className="dropdown-item" href="#" onClick={() => this.props.logout()}>Log Out</a></li>
                                 </ul>
                             </div>
         } else {
@@ -31,11 +31,31 @@ class Navbar extends React.Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/users">Users</Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link" to="/projects">Projects</Link>
+                            </li> */}
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Projects
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><Link className="dropdown-item" to="/projects">Projects list</Link></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><Link className="dropdown-item" to="/projects/create">Project create</Link></li>
+                                </ul>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link" to="/todos">ToDos</Link>
+                            </li> */}
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ToDos
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><Link className="dropdown-item" to="/todos">ToDos list</Link></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><Link className="dropdown-item" to="/todos/create">ToDo create</Link></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
