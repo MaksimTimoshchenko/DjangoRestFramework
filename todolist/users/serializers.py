@@ -6,3 +6,8 @@ class UserModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'firstname', 'lastname', 'email']
+
+class UserModelWithStatusesSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'firstname', 'lastname', 'email', 'is_admin', 'is_active']
