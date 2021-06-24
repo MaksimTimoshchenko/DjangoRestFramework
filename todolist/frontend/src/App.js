@@ -13,7 +13,8 @@ class App extends React.Component {
         super(props)
         this.state = {
             isAuthenticated: false,
-            authenticatedUser: '',
+            authenticatedUsername: '',
+            authenticatedUserId: '',
             token: ''
         }
     }
@@ -78,9 +79,7 @@ class App extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.isAuthenticated !== prevState.isAuthenticated) {
-            this.setState({
-                authenticatedUser: this.get_authenticated_user()
-            })
+            this.get_authenticated_user()
         }
     }
 
@@ -97,18 +96,18 @@ class App extends React.Component {
     }
 
     set_authenticated_user(user) {
-        console.log(user.username)
         this.setState({
-            authenticatedUser: user.username
+            authenticatedUsername: user.username,
+            authenticatedUserId: user.id
         })
     }
 
     render () {
         return (
             <section className="d-flex flex-column min-vh-100">
-                <Navbar isAuthenticated={this.state.isAuthenticated} authenticatedUser={this.state.authenticatedUser} logout={(event) => this.logout()}/>
+                <Navbar isAuthenticated={this.state.isAuthenticated} authenticatedUsername={this.state.authenticatedUsername} logout={(event) => this.logout()}/>
                 <LoginForm isAuthenticated={this.state.isAuthenticated} get_token={(username, password) => this.get_token(username, password)} />
-                <Main token={this.state.token} get_headers={() => this.get_headers()}/>
+                <Main token={this.state.token} authenticatedUserId={this.state.authenticatedUserId} get_headers={() => this.get_headers()}/>
                 <Footer />
             </section>
         )
