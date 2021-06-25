@@ -24,7 +24,7 @@ export default class TodoCreatePage extends Component {
         const headers = this.props.headers
         axios
         .post(
-            'http://127.0.0.1:8000/api/todos/',
+            'http://127.0.0.1:8080/api/todos/',
             {'text': this.state.text, 'status': this.state.status, 'project': this.state.project, 'creator_user': this.props.authenticatedUserId},
             {headers}
         )
@@ -37,7 +37,7 @@ export default class TodoCreatePage extends Component {
     componentDidMount() {
         const headers = this.props.headers
         axios
-        .get('http://127.0.0.1:8000/api/projects/', {headers})
+        .get('http://127.0.0.1:8080/api/projects/', {headers})
         .then(response => {
             const projects = response.data.results
             this.setState({

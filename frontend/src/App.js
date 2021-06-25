@@ -20,7 +20,7 @@ class App extends React.Component {
     }
 
     get_token(email, password) {
-        axios.post('http://127.0.0.1:8000/api/token/', {email: email, password: password})
+        axios.post('http://127.0.0.1:8080/api/token/', {email: email, password: password})
         .then(response => {
             this.set_token(response.data.access)
         }).catch(error => alert('Неверный логин или пароль'))
@@ -88,7 +88,7 @@ class App extends React.Component {
             return []
         } else {
             let headers = this.get_headers()
-            axios.get('http://127.0.0.1:8000/api/users/me/', { headers })
+            axios.get('http://127.0.0.1:8080/api/users/me/', { headers })
             .then(response => {
                 this.set_authenticated_user(response.data)
             }).catch(error => this.logout())
