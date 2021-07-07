@@ -39,7 +39,7 @@ export default class ProjectCreatePage extends Component {
         const headers = this.props.headers
         axios
         .post(
-            'http://127.0.0.1:8000/api/projects/',
+            'http://127.0.0.1:8080/api/projects/',
             {'name': this.state.name, 'repository_url': this.state.repository_url, 'users': this.state.users},
             {headers}
         )
@@ -52,7 +52,7 @@ export default class ProjectCreatePage extends Component {
     componentDidMount() {
         const headers = this.props.headers
         axios
-        .get('http://127.0.0.1:8000/api/users/', {headers})
+        .get('http://127.0.0.1:8080/api/users/', {headers})
         .then(response => {
             const users = response.data.results
             this.setState({

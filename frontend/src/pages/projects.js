@@ -16,7 +16,7 @@ class ProjectsPage extends Component {
     delete_project(project_id) {
         const headers = this.props.headers
         axios
-        .delete(`http://127.0.0.1:8000/api/projects/${project_id}/`, {headers})
+        .delete(`http://127.0.0.1:8080/api/projects/${project_id}/`, {headers})
         .then(response => {
             this.setState({
                 'projects': this.state.projects.filter((project) => project.id !== project_id)
@@ -28,7 +28,7 @@ class ProjectsPage extends Component {
     create_project(name, repository_url) {
         axios
         .post(
-            'http://127.0.0.1:8000/api/projects/',
+            'http://127.0.0.1:8080/api/projects/',
             {"name": name, "repository_url": repository_url}
         )
         .then(response => {
@@ -60,7 +60,7 @@ class ProjectsPage extends Component {
         const headers = this.props.headers
         axios
         .get(
-            'http://127.0.0.1:8000/api/projects/?name=' + this.state.search_string, {headers}
+            'http://127.0.0.1:8080/api/projects/?name=' + this.state.search_string, {headers}
         )
         .then(response => {
             this.setState({
